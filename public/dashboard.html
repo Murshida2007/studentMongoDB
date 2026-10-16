@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .dashboard {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0001;
+            width: 320px;
+        }
+
+        h1 {
+            color: #263b63;
+        }
+
+        button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #b52a37;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <h1>Welcome!</h1>
+
+        <h2 id="welcomeName"></h2>
+
+        <p>You have successfully logged in.</p>
+
+        <button id="logoutBtn">Log Out</button>
+    </div>
+
+    <script>
+        const userName = localStorage.getItem("userName");
+
+        // Redirect if no saved login information exists
+        if (!userName) {
+            window.location.replace("/index.html");
+        } else {
+            document.getElementById("welcomeName").textContent =
+                userName;
+        }
+
+        // Log Out
+        document.getElementById("logoutBtn")
+            .addEventListener("click", function() {
+                localStorage.removeItem("userName");
+                localStorage.removeItem("userEmail");
+
+                window.location.replace("/index.html");
+            });
+    </script>
+</body>
+</html>
